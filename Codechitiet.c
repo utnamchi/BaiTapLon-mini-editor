@@ -129,3 +129,14 @@ void xoaKyTuTaiCon(VanBan *vb) {
     vb->cur.cot  = cot;                      
     vb->daSua = 1;
 }
+///XOA DONG HIEN TAI 
+void xoaDongHienTai(VanBan *vb) {
+    if (!vanBanHopLe(vb)) return;
+
+    xoaDong(vb, vb->cur.dong);               
+    if (vb->cur.dong >= vb->nLines) vb->cur.dong = vb->nLines - 1;
+    if (vb->cur.dong < 0) vb->cur.dong = 0;
+
+    vb->cur.cot = 0;
+    vb->daSua = 1;
+}
