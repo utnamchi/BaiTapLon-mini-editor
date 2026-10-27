@@ -49,6 +49,7 @@ void xuLyPhim(VanBan *vb, int *thoat) {
     switch (k) {
         case KEY_ENTER:  xuongDong(vb);                    break;
         case KEY_BACK:   xoaKyTuTruocCon(vb);              break;
+		case KEY_TAB:    chenTab(vb);          			   break;
         case KEY_CTRL_K: xoaDong(vb, vb->cur.dong);        break;
         case KEY_CTRL_T: thongKe(vb);                      break;
         case KEY_CTRL_F: timChuoi(vb);                     break;
@@ -111,13 +112,6 @@ void xuLyPhim(VanBan *vb, int *thoat) {
            		*thoat = 1;
             	break;
     		}
-    	}
-    	case KEY_TAB :{
-    		chenKyTu(vb, ' ');
-    		chenKyTu(vb, ' ');
-    		chenKyTu(vb, ' ');
-    		chenKyTu(vb, ' ');
-    		break;
     	}
     	default:
             if (k >= 32 && k < 127) chenKyTu(vb, (char)k);   /* ky tu in duoc */
