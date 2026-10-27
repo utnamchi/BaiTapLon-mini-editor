@@ -36,3 +36,9 @@ void chenKyTu(VanBan *vb, char c) {
     vb->cur.cot = cot + 1;
     vb->daSua = 1;
 }
+
+    void chenTab(VanBan *vb) {
+    for (int i = 0; i < SO_KHOANG_TRANG_TAB; i++) {
+        chenKyTu(vb, ' ');
+    }
+}
