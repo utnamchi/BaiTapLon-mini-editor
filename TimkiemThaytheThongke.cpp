@@ -59,3 +59,21 @@ static int thayTrenMotDong(char **dong, const char *cu, const char *moi) {
     char *ketQua = (char *)bnMalloc(lenMoiTong + 1);
     if (ketQua == NULL) return 0;
 
+    const char *src = *dong;
+    char *dst = ketQua;
+    const char *timThay;
+    while ((timThay = strstr(src, cu)) != NULL) {
+        size_t doDaiTruoc = (size_t)(timThay - src);
+        memcpy(dst, src, doDaiTruoc);
+        dst += doDaiTruoc;
+        memcpy(dst, moi, lenMoi);
+        dst += lenMoi;
+        src = timThay + lenCu;
+    }
+    strcpy(dst, src);
+
+    bnFree(*dong);
+    *dong = ketQua;
+    return (int)soLan;
+}
+
