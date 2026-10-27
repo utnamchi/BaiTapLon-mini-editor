@@ -77,3 +77,28 @@ static int thayTrenMotDong(char **dong, const char *cu, const char *moi) {
     return (int)soLan;
 }
 
+void thayTheTatCa(VanBan *vb) {
+    char cu[256], moi[256];
+    clearScreen();
+    printf("Chuoi can thay: ");
+    if (!fgets(cu, sizeof(cu), stdin)) return;
+    cu[strcspn(cu, "\n")] = '\0';
+
+    printf("Thay bang     : ");
+    if (!fgets(moi, sizeof(moi), stdin)) return;
+    moi[strcspn(moi, "\n")] = '\0';
+
+    if (!cu[0]) {
+        printf("Chuoi can thay khong duoc de trong. Nhan phim bat ky...\n");
+        _getch();
+        return;
+    }
+    
+    int tong = 0;
+    for (int i = 0; i < vb->nLines; i++)
+        tong += thayTrenMotDong(&vb->lines[i], cu, moi);
+    if (tong > 0) vb->daSua = 1;
+    printf("Da thay %d vi tri. Nhan phim bat ky...\n", tong);
+    _getch();
+}
+
