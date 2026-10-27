@@ -60,3 +60,37 @@ void chenKyTu(VanBan *vb, char c) {
     vb->cur.cot = 0;
     vb->daSua = 1;
 }
+///XOA KY TU TAI VI TRI TRUOC CON TRO 
+  void xoaKyTuTruocCon(VanBan *vb) {
+    char *dong, *truoc, *moi;
+    int cot, len, i;
+    int dongTruoc, lenTruoc, lenHienTai;
+    if (!vanBanHopLe(vb)) return;
+    cot  = chuanHoaCot(vb);
+    dong = vb->lines[vb->cur.dong];
+    len  = (int)strlen(dong);
+    if (cot > 0) {
+        for (i = cot - 1; i < len; i++) {
+            dong[i] = dong[i + 1];
+        }
+        vb->cur.cot = cot - 1;
+        vb->daSua = 1;
+        return;
+    }
+    if (vb->cur.dong == 0) return;
+    dongTruoc  = vb->cur.dong - 1;
+    truoc      = vb->lines[dongTruoc];
+    lenTruoc   = (int)strlen(truoc);         
+    lenHienTai = (int)strlen(dong);
+    moi = (char *)bnRealloc(truoc, lenTruoc + lenHienTai + 1);
+    if (moi == NULL) {
+        datThongBao(vb, "Het bo nho!");
+        return;
+    }
+    strcat(moi, dong);
+    vb->lines[dongTruoc] = moi;
+    xoaDong(vb, vb->cur.dong);
+    vb->cur.dong = dongTruoc;
+    vb->cur.cot  = lenTruoc;
+    vb->daSua = 1;
+}
