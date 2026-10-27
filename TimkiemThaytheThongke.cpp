@@ -39,3 +39,23 @@ static int thayTrenMotDong(char **dong, const char *cu, const char *moi) {
     size_t soLan = 0;
     const char *p = *dong;
 
+    /* Dem so lan xuat hien cua chuoi cu (khong chong lan). */
+    while ((p = strstr(p, cu)) != NULL) {
+        soLan++;
+        p += lenCu;
+    }
+    if (soLan == 0) return 0;
+    
+      /* Tinh kich thuoc moi, bao gom ky tu ket thuc '\0'. */
+    size_t lenMoiTong;
+    if (lenMoi >= lenCu) {
+        size_t themMoi = soLan * (lenMoi - lenCu);
+        if (themMoi > (size_t)-1 - lenGoc - 1) return 0;
+        lenMoiTong = lenGoc + themMoi;
+    } else {
+        lenMoiTong = lenGoc - soLan * (lenCu - lenMoi);
+    }
+
+    char *ketQua = (char *)bnMalloc(lenMoiTong + 1);
+    if (ketQua == NULL) return 0;
+
