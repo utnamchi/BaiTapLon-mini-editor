@@ -102,3 +102,31 @@ void thayTheTatCa(VanBan *vb) {
     _getch();
 }
 
+void thongKe(const VanBan *vb) {
+    int soKyTu = 0, soTu = 0;
+
+    for (int i = 0; i < vb->nLines; i++) {
+        const unsigned char *s = (const unsigned char *)vb->lines[i];
+        int trongTu = 0;
+
+        soKyTu += (int)strlen((const char *)s);
+
+        /* Mot tu bat dau khi gap ky tu khong phai khoang trang
+           sau mot khoang trang hoac o dau dong. */
+        while (*s) {
+            if (isspace(*s)) {
+                trongTu = 0;
+            } else if (!trongTu) {
+                soTu++;
+                trongTu = 1;
+            }
+            s++;
+        }
+    }
+
+    clearScreen();
+    printf("So dong : %d\nSo ky tu: %d\nSo tu   : %d\n",
+           vb->nLines, soKyTu, soTu);
+    printf("Nhan phim bat ky...\n");
+    _getch();
+}
