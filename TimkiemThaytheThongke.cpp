@@ -27,3 +27,15 @@ void timChuoi(VanBan *vb) {
     printf("Tong cong: %d lan. Nhan phim bat ky...\n", soLan);
     _getch();
 }
+
+/* Thay the tat ca "cu" bang "moi" tren mot dong, tra ve so lan thay */
+static int thayTrenMotDong(char **dong, const char *cu, const char *moi) {
+    if (dong == NULL || *dong == NULL || cu == NULL || moi == NULL || cu[0] == '\0')
+        return 0;
+
+    size_t lenCu = strlen(cu);
+    size_t lenMoi = strlen(moi);
+    size_t lenGoc = strlen(*dong);
+    size_t soLan = 0;
+    const char *p = *dong;
+
