@@ -42,3 +42,21 @@ void chenKyTu(VanBan *vb, char c) {
         chenKyTu(vb, ' ');
     }
 }
+///XUONG DONG TAI VI TRI CON TRO 
+    void xuongDong(VanBan *vb) {
+    int cot, soDongTruoc;
+
+    if (!vanBanHopLe(vb)) return;
+
+    cot = chuanHoaCot(vb);
+    soDongTruoc = vb->nLines;                
+     themDong(vb, vb->cur.dong + 1, vb->lines[vb->cur.dong] + cot);
+    if (vb->nLines != soDongTruoc + 1) {
+        datThongBao(vb, "Khong the tach dong!");
+        return;
+    }
+    vb->lines[vb->cur.dong][cot] = '\0';
+    vb->cur.dong++;
+    vb->cur.cot = 0;
+    vb->daSua = 1;
+}
