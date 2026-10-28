@@ -116,3 +116,14 @@ void datThongBao(VanBan *vb, const char *noiDung) {
     strncpy(vb->thongBao, noiDung, MAX_THONG_BAO - 1);
     vb->thongBao[MAX_THONG_BAO - 1] = '\0';
 }
+
+
+
+
+int main (){
+	printf("Hello UTC2");
+	
+	
+	
+	
+} 
