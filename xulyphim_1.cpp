@@ -63,3 +63,12 @@ void xuLyPhim(VanBan *vb, int *thoat) {
             if (ten[0]) luuFile(vb, ten);
             break;
         }
+        case KEY_CTRL_O: {
+            char ten[260];
+            clearScreen();
+            printf("Ten file can mo: ");
+            fgets(ten, sizeof(ten), stdin);
+            ten[strcspn(ten, "\n")] = '\0';
+            if (!moFile(vb, ten)) { printf("Khong mo duoc file!\n"); _getch(); }
+            break;
+        }
