@@ -49,3 +49,17 @@ void xuLyPhim(VanBan *vb, int *thoat) {
         case KEY_TAB:    chenTab(vb);          			   break;
         case KEY_CTRL_K: xoaDong(vb, vb->cur.dong);        break;
         case KEY_CTRL_T: thongKe(vb);                      break;
+        case KEY_CTRL_F: timChuoi(vb);                     break;
+        case KEY_CTRL_R: thayTheTatCa(vb);                 break;
+        case KEY_CTRL_S: {
+            char ten[260];
+            if (vb->tenFile[0]) strcpy(ten, vb->tenFile);
+            else {
+                clearScreen();
+                printf("Ten file (vd: baitap.txt): ");
+                fgets(ten, sizeof(ten), stdin);
+                ten[strcspn(ten, "\n")] = '\0';
+            }
+            if (ten[0]) luuFile(vb, ten);
+            break;
+        }
