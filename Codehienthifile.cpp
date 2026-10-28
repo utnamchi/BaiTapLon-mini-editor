@@ -47,3 +47,21 @@ int luuFile(VanBan *vb, const char *ten) {
     vb->daSua = 0;
     return 1;
 }
+int moFile(VanBan *vb, const char *ten) {
+    FILE *f = fopen(ten, "r");
+    if (!f) return 0;
+    /* Xoa noi dung cu, khoi tao lai */
+    giaiPhong(vb);
+    khoiTao(vb);
+    xoaDong(vb, 0);          /* bo dong rong khoi tao; xoaDong se tu them lai neu rong */
+    
+    char buffer[1024];
+    while (fgets(buffer, sizeof(buffer), f)) {
+        // (ghi chu)
+        size_t len = strlen(buffer);
+        while (len > 0 && (buffer[len - 1] == '\n' || buffer[len - 1] == '\r')) {
+            buffer[--len] = '\0';
+        }
+        // (ghi chu)
+        themDong(vb, vb->nLines, buffer);
+    }
