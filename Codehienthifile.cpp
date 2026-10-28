@@ -34,3 +34,16 @@ void hienThi(const VanBan *vb) {
     /* Dat con tro: 3 dong tieu de, 5 ky tu '%3d| ' */
     gotoxy(5 + (vb->cur.cot - vb->offCot), 3 + (vb->cur.dong - vb->offDong));
 }
+/* ===================================================
+ * 4. FILE .txt
+ * =================================================== */
+int luuFile(VanBan *vb, const char *ten) {
+    FILE *f = fopen(ten, "w");
+    if (!f) return 0;
+    for (int i = 0; i < vb->nLines; i++)
+        fprintf(f, "%s\n", vb->lines[i]);
+    fclose(f);
+    strncpy(vb->tenFile, ten, sizeof(vb->tenFile) - 1);
+    vb->daSua = 0;
+    return 1;
+}
