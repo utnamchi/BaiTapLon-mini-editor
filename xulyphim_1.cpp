@@ -72,3 +72,46 @@ void xuLyPhim(VanBan *vb, int *thoat) {
             if (!moFile(vb, ten)) { printf("Khong mo duoc file!\n"); _getch(); }
             break;
         }
+        case KEY_CTRL_Q: {
+    		if (vb->daSua) {
+        		char ch;
+        		printf("Luu truoc khi thoat? (y/n): ");
+        		ch = _getch();
+
+        		if (ch == 'y' || ch == 'Y') {
+            		char ten[260];
+					strcpy(ten, vb->tenFile);
+				
+					if (ten[0] == '\0') {
+               			printf("\nTen file: ");
+                		fgets(ten, sizeof(ten), stdin);
+                		ten[strcspn(ten, "\n")] = '\0';
+            		}
+
+            		if (ten[0] == '\0') {
+                		printf("Ten file khong duoc de trong!");
+                		_getch();
+            		}
+            		else if (luuFile(vb, ten)) {
+                		*thoat = 1;
+            		}
+            		else {
+               			printf("Khong luu duoc file!");
+                		_getch();
+            		}
+        		}
+        		else if (ch == 'n' || ch == 'N') {
+            		*thoat = 1;
+        		}
+        		break;
+    		}
+    		else {
+           		*thoat = 1;
+            	break;
+    		}
+    	}
+    	default:
+            if (k >= 32 && k < 127) chenKyTu(vb, (char)k);   /* ky tu in duoc */
+            break;
+	}
+}
