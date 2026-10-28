@@ -37,3 +37,15 @@ void xuLyPhim(VanBan *vb, int *thoat) {
 			break;
 		}
         }
+        /* Gioi han cot theo do dai dong moi */
+        len = (int)strlen(vb->lines[vb->cur.dong]);
+        if (vb->cur.cot > len) vb->cur.cot = len;
+        return;
+    }
+
+    switch (k) {
+        case KEY_ENTER:  xuongDong(vb);                    break;
+        case KEY_BACK:   xoaKyTuTruocCon(vb);              break;
+        case KEY_TAB:    chenTab(vb);          			   break;
+        case KEY_CTRL_K: xoaDong(vb, vb->cur.dong);        break;
+        case KEY_CTRL_T: thongKe(vb);                      break;
