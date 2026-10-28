@@ -23,4 +23,13 @@ void khoiTao(VanBan *vb) {
     }
     vb->daSua = 0;                /* van ban moi chua bi sua */
 }
+void giaiPhong(VanBan *vb) {
+    if (!vb) return;
+    if (vb->lines) {
+        for (int i = 0; i < vb->nLines; i++) bnFree(vb->lines[i]);
+        bnFree(vb->lines);
+    }
+    vb->lines = NULL;
+    vb->nLines = vb->capacity = 0;
+}
 
