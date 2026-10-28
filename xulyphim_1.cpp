@@ -18,3 +18,22 @@ void xuLyPhim(VanBan *vb, int *thoat) {
                     vb->cur.cot = (int)strlen(vb->lines[vb->cur.dong]);
                 }
                 break;
+             case KEY_RIGHT:
+                if (vb->cur.cot < len) vb->cur.cot++;
+                else if (vb->cur.dong < vb->nLines - 1) { vb->cur.dong++; vb->cur.cot = 0; }
+                break;
+            case KEY_DEL : {
+	    	char *dong= vb->lines[vb->cur.dong];
+	    	int len = strlen(dong);
+	    	
+	    	if(vb->cur.cot < len )
+	    		memmove(dong + vb->cur.cot ,dong + vb->cur.cot+1, len-vb->cur.cot);
+	    		
+	    	else if(vb->cur.dong <vb->nLines -1){
+	    		strcat(dong, vb->lines[vb->cur.dong+1]); //noi tiep dong nay vao sau dong kia
+	    		xoaDong(vb, vb->cur.dong+1);
+			}
+			vb->daSua=1;
+			break;
+		}
+        }
