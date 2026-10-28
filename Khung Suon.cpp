@@ -444,9 +444,7 @@ int moFile(VanBan *vb, const char *ten) {
     return 1;
 }
 
-/* =====================================================
- *  5. TIM KIEM / THAY THE / THONG KE
- * ===================================================== */
+//PHAN 4 Tiemkiem/ThayThe/Thongke cua Phong 
 void timChuoi(VanBan *vb) {
     char mau[256];
     clearScreen();
