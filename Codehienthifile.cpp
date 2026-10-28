@@ -65,3 +65,14 @@ int moFile(VanBan *vb, const char *ten) {
         // (ghi chu)
         themDong(vb, vb->nLines, buffer);
     }
+   // (ghi chu)
+    if (vb->nLines == 0) {
+        themDong(vb, 0, "");
+    }
+
+    fclose(f);
+    strncpy(vb->tenFile, ten, sizeof(vb->tenFile) - 1);
+    vb->daSua = 0;
+    vb->cur.dong = vb->cur.cot = 0;
+    return 1;
+}
