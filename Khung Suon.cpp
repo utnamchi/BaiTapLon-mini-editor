@@ -132,7 +132,7 @@ void khoiTao(VanBan *vb) {
     vb->daSua = 0;
     vb->offDong = 0;
     vb->offCot = 0;
-    vb->manHinhDong = 1000;
+    vb->manHinhDong = 30;
     
     /* Luon dam bao van ban moi mo ra co it nhat 1 dong trong */
     themDong(vb, 0, "");
